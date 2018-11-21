@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/Proyecto.dir/Parser.cpp.o CMakeFiles/Proyecto.dir/Lexer.cpp.o CMakeFiles/Proyecto.dir/main.cpp.o  -o Proyecto -rdynamic 

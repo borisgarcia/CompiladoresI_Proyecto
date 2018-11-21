@@ -1,0 +1,76 @@
+/*Declaracion*/
+
+declar -> type IDENT p_declar declar
+declar -> VOID IDENT declarfn declar
+declar -> ''
+
+p_declar -> declarfn
+p_declar -> declarvar
+
+declarvar -> , IDENT declarvar
+declarvar -> ;
+declarvar -> = expr ;
+
+declarfn -> ( parametros ) p_declarfn
+p_declarfn -> ;
+p_declarfn -> { body }
+
+/*Bucles*/
+
+whilestmt -> WHILE ( condicion ) statement
+
+forstmt -> FOR ( fordeclar ; condicion ; forassign ) statement
+fordeclar -> type IDENT = expr
+fordeclar -> IDENT = expr
+fordeclar -> ''
+forassign -> op IDENT op assignOP
+
+/*IF*/
+
+ifstmt -> IF ( condicion ) statement elsestmt
+elsestmt -> ELSE p_elsestmt
+elsestmt -> ''
+p_elsestmt -> IF ( condicion ) statement elsestmt
+p_elsestmt -> statement
+
+/*COSILLAS*/
+
+assignOP -> = expr
+assignOP -> ''
+
+op -> ++
+op -> --
+op -> ''
+
+condicion -> expr opcondi expr p_condicion
+
+p_condicion -> && condicion
+p_condicion -> || condicion
+p_condicion -> ''
+
+opcondi -> ==
+opcondi -> > 
+opcondi -> <
+opcondi -> !=
+opcondi -> <=
+opcondi -> >=
+
+type -> INT
+type -> CHAR
+type -> BOOLEAN
+
+expr -> term p_expr
+p_expr -> + term p_expr
+p_expr -> - term p_expr
+p_expr -> ''
+
+term -> factor p_term
+p_term -> * factor p_term
+p_term -> / factor p_term
+p_term -> ''
+
+factor -> IDENT
+factor -> NUMBER
+factor -> TRUE
+factor -> FALSE
+factor -> ( expr )

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp
+Lexer.h
+/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.h
+
+/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.h
+ctype.h
+-
+iostream
+-
+fstream
+-
+string
+-
+functional
+-
+deque
+-
+
+/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp
+
+/home/boris/Escritorio/CompiladoresI/Proyecto/main.cpp
+Sintax.h
+/home/boris/Escritorio/CompiladoresI/Proyecto/Sintax.h
+
