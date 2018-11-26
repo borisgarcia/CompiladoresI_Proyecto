@@ -90,7 +90,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                return Token::ASSIGN_DIV_OP;
+                return Token::ASSIGN_OP;
             }
             else   
                 return Token::DIV_OP;
@@ -342,16 +342,31 @@ Token Lexer::getNextToken()
             currCh = getNextChar();
             return Token::MOD_OP;
         }
-        else if(currCh == '\'')
+        else if(currCh == '\"')
         {
             currCh = getNextChar();
-            while(currCh != '\'')
+            while(currCh != '\"')
             {
                 tk += currCh;
                 currCh = getNextChar();
             }
             currCh = getNextChar();
             return Token::CADENA;
+        }
+        else if(currCh == '\'')
+        {
+            currCh = getNextChar();
+            tk += currCh;
+            currCh = getNextChar();
+            if(currCh == '\"')
+            {
+                currCh = getNextChar();
+                return Token::LETRA;
+            }
+            else
+            {
+                return Token::Unknown;
+            }
         }
         else
         {

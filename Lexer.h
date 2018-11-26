@@ -57,6 +57,9 @@ enum class Token : int
     MULTI_OP            = 45,
     MOD_OP              = 46,
 
+    CADENA              = 47,
+    LETRA               = 48,
+
     //No Term
 
     //Especial

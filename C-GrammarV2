@@ -1,21 +1,51 @@
-/*Declaracion*/
+input -> stmt_list
 
-declar -> type IDENT p_declar declar
-declar -> VOID IDENT declarfn declar
-declar -> ''
+stmt_list -> declar stmt_list
+stmt_list -> forstmt stmt_list
+stmt_list -> whilestmt stmt_list
+stmt_list -> ifstmt stmt_list
+stmt_list -> PRINTF ( ) ; stmt_list
+stmt_list -> IDENT = expr ; stmt_list
+stmt_list -> SCANF ( ) ; stmt_list
+stmt_list -> ''
+
+declar -> type pointer IDENT array p_declar
+declar -> VOID IDENT declarfn
+
+pointer -> *
+pointer -> ''
+
+array -> [ size ]
+array -> ''
+
+size -> NUMBER
+size -> ''
 
 p_declar -> declarfn
 p_declar -> declarvar
 
-declarvar -> , IDENT declarvar
+declarvar -> , pointer IDENT declarvar
 declarvar -> ;
-declarvar -> = expr ;
+declarvar -> = value declarvar
+value -> = expr
+value -> { p_value }
+
+p_value -> expr p_value_2
+p_value_2 -> , p_value
+p_value_2 -> ''
+declarfn -> ( parametros ) p_declarfn
+
+p_declarfn -> ;
+p_declarfn -> { p_statement }
 
 declarfn -> ( parametros ) p_declarfn
-p_declarfn -> ;
-p_declarfn -> { body }
 
-/*Bucles*/
+p_declarfn -> ;
+p_declarfn -> { p_statement }
+
+parametros -> type IDENT p_parametros
+p_parametros -> , parametros
+p_parametros -> ''
 
 whilestmt -> WHILE ( condicion ) statement
 
@@ -25,15 +55,24 @@ fordeclar -> IDENT = expr
 fordeclar -> ''
 forassign -> op IDENT op assignOP
 
-/*IF*/
-
 ifstmt -> IF ( condicion ) statement elsestmt
 elsestmt -> ELSE p_elsestmt
 elsestmt -> ''
 p_elsestmt -> IF ( condicion ) statement elsestmt
 p_elsestmt -> statement
 
-/*COSILLAS*/
+statement -> { p_statement }
+statement -> printf ( ) ;
+statement -> IDENT = expr ;
+statement -> scanf ;
+
+p_statement -> forstmt p_statement
+p_statement -> whilestmt p_statement
+p_statement -> ifstmt p_statement
+p_statement -> printf ( ) ; p_statement
+p_statement -> IDENT = expr ; p_statement
+p_statement -> scanf ; p_statement
+p_statement -> ''
 
 assignOP -> = expr
 assignOP -> ''
@@ -73,4 +112,7 @@ factor -> IDENT
 factor -> NUMBER
 factor -> TRUE
 factor -> FALSE
+factor -> CADENA
+factor -> LETRA
 factor -> ( expr )
+
