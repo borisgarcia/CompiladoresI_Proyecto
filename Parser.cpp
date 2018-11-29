@@ -24,35 +24,6 @@ void Parser::stmt_list()
         declar();
         stmt_list();
     }
-    /*else if(token == Token::kw_FOR)
-    {
-        forstmt();
-        stmt_list();
-    }
-    else if(token == Token::kw_WHILE)
-    {
-        whilestmt();
-        stmt_list();
-    }
-    else if(token == Token::kw_IF)
-    {
-        ifstmt();
-        stmt_list();
-    }
-    else if(token == Token::kw_PRINTF)
-    {
-        token = lexer.getNextToken();   
-    }
-    else if(token == Token::kw_SCANF)
-    {
-        token = lexer.getNextToken();
-    }
-    else if(token == Token::IDENT)
-    {
-        token = lexer.getNextToken();
-        p_stmt_list();
-        stmt_list();
-    }*/
 }
 
 void Parser::p_stmt_list()
@@ -81,6 +52,15 @@ void Parser::p_stmt_list()
             token = lexer.getNextToken();
         }
     }
+    else if(token == Token::INCREMENT_OP || token == Token::DECREMENT_OP)
+    {
+        token = lexer.getNextToken();
+        if(token != Token::SEMICOLON)
+        {
+            throw std::invalid_argument( "\np_stmt_list else if" );
+        }
+        token = lexer.getNextToken();
+    }
 }
 
 void Parser::p_stmt_list_2()
@@ -101,22 +81,15 @@ void Parser::p_stmt_list_2()
 }
 
 void Parser::declar()
-{
+{   
     if(token == Token::kw_INT || token == Token::kw_CHAR || token == Token::kw_BOOLEAN)
     {
         type();
-        pointer();
         if(token == Token::IDENT);
         {
             token = lexer.getNextToken();
             array();
             p_declar();
-            if(token != Token::SEMICOLON)
-            {
-                std::cout << "Semicolon" << '\n';
-                throw std::invalid_argument( "\ndeclar" );
-            }
-            token = lexer.getNextToken();
         }
     }
     else if (token == Token::kw_VOID)
@@ -125,9 +98,36 @@ void Parser::declar()
         if(token == Token::IDENT)
         {
             token = lexer.getNextToken();
-            declarfn();
+            if(token == Token::OPENPAR)
+            {
+                token = lexer.getNextToken();
+                parametros();
+                if(token == Token::CLOSEPAR)
+                {
+                    token = lexer.getNextToken();
+                    void_fn();
+                }
+            }    
         }
         
+    }
+}
+
+void Parser::void_fn()
+{
+    if(token == Token::SEMICOLON)
+    {
+        token = lexer.getNextToken();
+    }
+    else if(token == Token::OPENBRACE)
+    {
+        token = lexer.getNextToken();
+        p_statement();
+        if(token != Token::CLOSEBRACE)
+        {
+            throw std::invalid_argument( "\n void_fn" );
+        }
+        token = lexer.getNextToken();
     }
 }
 
@@ -170,14 +170,23 @@ void Parser::p_declar()
     else if(token == Token::COMMA || token == Token::ASSIGN_OP)
     {
         declarvar();
+        if(token != Token::SEMICOLON)
+        {
+            throw std::invalid_argument( "\ndeclar" );
+        }
+        token = lexer.getNextToken();
     }
+    else if(token == Token::SEMICOLON)
+    {
+        token = lexer.getNextToken();
+    }
+    
 }
 void Parser::declarvar()
 {
     if(token == Token::COMMA)
     {
         token = lexer.getNextToken();
-        pointer();
         if(token == Token::IDENT)
         {
             token = lexer.getNextToken();
@@ -185,9 +194,8 @@ void Parser::declarvar()
             declarvar();
         }
     }
-    else if(token == Token::ASSIGN_OP)
+    else if(token == Token::ASSIGN_OP || token == Token::OPENBRACE)
     {
-        token = lexer.getNextToken();
         value();
         declarvar();
     }
@@ -200,15 +208,14 @@ void Parser::value()
     {
         token = lexer.getNextToken();
         p_value();
-        if(token != Token::CLOSEBRACE)
+        if(token == Token::CLOSEBRACE)
         {
-           throw std::invalid_argument( "\nvalue" );
+            token = lexer.getNextToken();
         }
-        token = lexer.getNextToken();
     }
-    else
+    else if(token == Token::ASSIGN_OP)
     {
-        std::cout << "Else expr" << '\n';
+        token = lexer.getNextToken();
         expr();
     }
 }
@@ -251,7 +258,7 @@ void Parser::p_declarfn()
         _return();
         if(token != Token::CLOSEBRACE)
         {
-           throw std::invalid_argument( "\np_declarfn" );
+           throw std::invalid_argument( "\np_declarfn_1" );
         }
         token = lexer.getNextToken();
     }
@@ -458,6 +465,12 @@ void Parser::p_statement()
             token = lexer.getNextToken();
             array();
             declarvar();
+            if(token != Token::SEMICOLON)
+            {
+                throw std::invalid_argument( "\nreturn" );
+            }
+            token = lexer.getNextToken();
+            p_statement();
         }
     }
 }
@@ -466,8 +479,10 @@ void Parser::_return()
 {
     if(token == Token::kw_RETURN)
     {
+        std::cout << "Return" << '\n';
         token = lexer.getNextToken();
         expr();
+        std::cout << "Return" << '\n';
         if(token != Token::SEMICOLON)
         {
             throw std::invalid_argument( "\nreturn" );
@@ -493,15 +508,25 @@ void Parser::op()
 }
 void Parser::condicion()
 {
+    _not();
     expr();
     opcondi();
+    _not();
     expr();
     p_condicion();
 
 }
+
+void Parser::_not()
+{
+    if(token == Token::NOT)
+    {
+        token = lexer.getNextToken();
+    }
+}
 void Parser::p_condicion()
 {
-    if(token == Token::ADD_OP || token == Token::OR_OP)
+    if(token == Token::AND_OP || token == Token::OR_OP)
     {
         token = lexer.getNextToken();
         condicion();
@@ -528,7 +553,7 @@ void Parser::expr()
 }
 void Parser::p_expr()
 {
-    if(token == Token::ADD_OP || token == Token::SUB_OP)
+    if(token == Token::ADD_OP || token == Token::SUB_OP || token == Token::INCREMENT_OP || token == Token::DECREMENT_OP)
     {
         token = lexer.getNextToken();
         term();
@@ -551,7 +576,7 @@ void Parser::p_term()
 }
 void Parser::factor()
 {
-    if(token == Token::IDENT || token == Token::NUMBER || token == Token::kw_TRUE || token == Token::kw_FALSE)
+    if(token == Token::LETRA || token == Token::IDENT || token == Token::NUMBER || token == Token::kw_TRUE || token == Token::kw_FALSE)
     {
         token = lexer.getNextToken();
     }

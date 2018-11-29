@@ -11,6 +11,8 @@ class Parser
         Token token;
         Lexer &lexer;
         void input();
+        void _not();
+        void void_fn();
         void stmt_list();
         void p_stmt_list();
         void p_stmt_list_2();

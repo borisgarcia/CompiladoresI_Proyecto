@@ -48,13 +48,24 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto
+CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/build
+CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -80,9 +91,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,98 +122,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Proyecto
+# Target rules for targets named test_lexer
 
 # Build rule for target.
-Proyecto: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Proyecto
-.PHONY : Proyecto
+test_lexer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_lexer
+.PHONY : test_lexer
 
 # fast build rule for target.
-Proyecto/fast:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/build
-.PHONY : Proyecto/fast
+test_lexer/fast:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/build
+.PHONY : test_lexer/fast
 
-Lexer.o: Lexer.cpp.o
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.o: home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.o
 
-.PHONY : Lexer.o
-
-# target to build an object file
-Lexer.cpp.o:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.o
-.PHONY : Lexer.cpp.o
-
-Lexer.i: Lexer.cpp.i
-
-.PHONY : Lexer.i
-
-# target to preprocess a source file
-Lexer.cpp.i:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.i
-.PHONY : Lexer.cpp.i
-
-Lexer.s: Lexer.cpp.s
-
-.PHONY : Lexer.s
-
-# target to generate assembly for a file
-Lexer.cpp.s:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.s
-.PHONY : Lexer.cpp.s
-
-Parser.o: Parser.cpp.o
-
-.PHONY : Parser.o
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.o
 
 # target to build an object file
-Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.o
-.PHONY : Parser.cpp.o
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.o
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.o
 
-Parser.i: Parser.cpp.i
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.i: home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.i
 
-.PHONY : Parser.i
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.i
 
 # target to preprocess a source file
-Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.i
-.PHONY : Parser.cpp.i
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.i
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.i
 
-Parser.s: Parser.cpp.s
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.s: home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.s
 
-.PHONY : Parser.s
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.s
 
 # target to generate assembly for a file
-Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.s
-.PHONY : Parser.cpp.s
+home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.s
+.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.cpp.s
 
-main.o: main.cpp.o
+test_lexer.o: test_lexer.cpp.o
 
-.PHONY : main.o
+.PHONY : test_lexer.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.o
-.PHONY : main.cpp.o
+test_lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/test_lexer.cpp.o
+.PHONY : test_lexer.cpp.o
 
-main.i: main.cpp.i
+test_lexer.i: test_lexer.cpp.i
 
-.PHONY : main.i
+.PHONY : test_lexer.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.i
-.PHONY : main.cpp.i
+test_lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/test_lexer.cpp.i
+.PHONY : test_lexer.cpp.i
 
-main.s: main.cpp.s
+test_lexer.s: test_lexer.cpp.s
 
-.PHONY : main.s
+.PHONY : test_lexer.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.s
-.PHONY : main.cpp.s
+test_lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/test_lexer.cpp.s
+.PHONY : test_lexer.cpp.s
 
 # Help Target
 help:
@@ -210,18 +194,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Proyecto"
-	@echo "... Lexer.o"
-	@echo "... Lexer.i"
-	@echo "... Lexer.s"
-	@echo "... Parser.o"
-	@echo "... Parser.i"
-	@echo "... Parser.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... test_lexer"
+	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.o"
+	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.i"
+	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.s"
+	@echo "... test_lexer.o"
+	@echo "... test_lexer.i"
+	@echo "... test_lexer.s"
 .PHONY : help
 
 

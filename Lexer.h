@@ -57,6 +57,8 @@ enum class Token : int
     MULTI_OP            = 45,
     MOD_OP              = 46,
     LETRA               = 47,
+    NOT                 = 48,
+    Apostrophe          = 49,
 
     //No Term
 
@@ -70,7 +72,7 @@ enum class Token : int
 class Lexer
 {
     public:
-        Lexer(char * path);
+        Lexer(std::string path);
         Token getNextToken();
         void getToken();
         std::string getText();

@@ -1,6 +1,6 @@
 #include "Lexer.h"
 
-Lexer::Lexer(char * path)
+Lexer::Lexer(std::string path)
 {
     file.open(path, std::ifstream::in);
     initLexer();
@@ -40,9 +40,9 @@ void Lexer::getToken()
 
 Token Lexer::getNextToken()
 { 
-    tk = "";
     while(1) 
     {
+        tk = "";
         if(currCh == EOF)
         {
             return Token::Eof;
@@ -132,7 +132,8 @@ Token Lexer::getNextToken()
                 }
                 else
                 {
-                    file.seekg(temp);
+                    file.seekg(temp-1);
+                    currCh = getNextChar();
                     return Token::kw_ELSE;
                 }
             }
@@ -151,11 +152,11 @@ Token Lexer::getNextToken()
             else if(s == "false")
                 return Token::kw_FALSE;
             
-            else if(s == "printf")
+            /*else if(s == "printf")
                 return Token::kw_PRINTF;
             
             else if(s == "scanf")
-                return Token::kw_SCANF;
+                return Token::kw_SCANF;*/
                             
             else if(s == "return")
                 return Token::kw_RETURN;
@@ -233,8 +234,7 @@ Token Lexer::getNextToken()
                 std::cout << tk << " ";
                 return Token::AND_OP;
             }
-            std::cout << tk << " ";
-            return Token::MEMORYDIR;
+            return Token::Unknown;
         }
         else if(currCh == '|')
         {
@@ -286,7 +286,7 @@ Token Lexer::getNextToken()
                 std::cout << tk << " ";
                 return Token::NOT_EQUAL_OP;
             }
-            return Token::Unknown;
+            return Token::NOT;
         }
         else if(currCh == ';')
         {
@@ -368,7 +368,7 @@ Token Lexer::getNextToken()
             currCh = getNextChar();
             tk += currCh;
             currCh = getNextChar();
-            if(currCh == '\"')
+            if(currCh == '\'')
             {
                 currCh = getNextChar();
                 std::cout << tk << " ";

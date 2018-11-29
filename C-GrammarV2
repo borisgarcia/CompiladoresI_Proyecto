@@ -1,36 +1,26 @@
 input -> stmt_list
 
 stmt_list -> declar stmt_list
-stmt_list -> forstmt stmt_list
-stmt_list -> whilestmt stmt_list
-stmt_list -> ifstmt stmt_list
-stmt_list -> PRINTF ( ) ; stmt_list
-stmt_list -> IDENT p_stmt_list stmt_list
-stmt_list -> SCANF ( ) ; stmt_list
 stmt_list -> ''
 
+p_stmt_list -> ++ ;
+p_stmt_list -> -- ;
 p_stmt_list -> = expr p_stmt_list_2 ;
 p_stmt_list -> ( ) ;
 p_stmt_list_2 -> ''
 p_stmt_list_2 -> ( ) ;
 
-declar -> type pointer IDENT array p_declar ;
-declar -> VOID IDENT declarfn
+declar -> VOID IDENT ( parametros ) void_fn
+void_fn -> ;
+void_fn -> { p_statement }
 
-pointer -> *
-pointer -> ''
-
-array -> [ size ]
-array -> ''
-
-size -> NUMBER
-size -> ''
+declar -> type IDENT array p_declar
 
 p_declar -> declarfn
-p_declar -> declarvar
+p_declar -> declarvar ;
 
 declarvar -> , pointer IDENT array declarvar
-declarvar -> = value declarvar
+declarvar -> value declarvar
 declarvar -> ''
 
 value -> = expr
@@ -39,12 +29,22 @@ value -> { p_value }
 p_value -> expr p_value_2
 p_value_2 -> , p_value
 p_value_2 -> ''
+
 declarfn -> ( parametros ) p_declarfn
 
 p_declarfn -> ;
 p_declarfn -> { p_statement return }
 
 return -> RETURN expr ;
+return -> ''
+
+pointer -> *
+pointer -> ''
+array -> [ size ]
+array -> ''
+size -> NUMBER
+size -> ''
+
 
 parametros -> type IDENT p_parametros
 parametros -> ''
@@ -64,17 +64,16 @@ elsestmt -> ELSE statement
 elsestmt -> ELSEIF ( condicion ) statement elsestmt
 elsestmt -> ''
 
-p_elsestmt -> ELSEIF ( condicion ) statement elsestmt
-p_elsestmt -> statement
-
 statement -> { p_statement }
 
 p_statement -> forstmt p_statement
-p_statement -> type pointer IDENT array declarvar
+p_statement -> type IDENT array declarvar ; p_statement
 p_statement -> whilestmt p_statement
 p_statement -> ifstmt p_statement
 p_statement -> printf ( ) ; p_statement
 p_statement -> IDENT p_stmt_list p_statement
+p_statement -> IDENT ++ ; p_statement
+p_statement -> IDENT -- ; p_statement
 p_statement -> scanf ; p_statement
 p_statement -> ''
 
@@ -85,7 +84,7 @@ op -> ++
 op -> --
 op -> ''
 
-condicion -> expr opcondi expr p_condicion
+condicion -> not expr opcondi not expr p_condicion
 
 p_condicion -> && condicion
 p_condicion -> || condicion
@@ -97,6 +96,9 @@ opcondi -> <
 opcondi -> !=
 opcondi -> <=
 opcondi -> >=
+
+not -> !
+not -> ''
 
 type -> INT
 type -> CHAR

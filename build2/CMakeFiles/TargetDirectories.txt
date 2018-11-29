@@ -1,3 +1,0 @@
-/home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles/edit_cache.dir
-/home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles/rebuild_cache.dir
-/home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles/Proyecto.dir

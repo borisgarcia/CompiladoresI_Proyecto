@@ -1,0 +1,7 @@
+int method1/*   */    	(){}
+void method2();
+char method3(bool b1){
+ /* 
+	Code goes here
+*/
+}

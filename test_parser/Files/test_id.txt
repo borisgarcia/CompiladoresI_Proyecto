@@ -1,0 +1,6 @@
+char test_char;
+bool ____123___boolllll__12313123;
+int _number_1_234;
+char _;
+int _123;
+bool exist;

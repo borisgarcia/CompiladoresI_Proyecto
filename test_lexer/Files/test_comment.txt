@@ -1,0 +1,13 @@
+/* Comment
+
+Block * / Block still in
+
+Ending // Block // * / *
+
+*/
+
+// Line Comment /// */*/*//* Line
+
+x // hola
+
+y /* Comment Block */ + x /* Bloque 3 /* /* /* /* /* /* /* /* */

@@ -54,45 +54,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto
+CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/build
+CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/Proyecto.dir
+# Target rules for target CMakeFiles/test_lexer.dir
 
 # All Build rule for target.
-CMakeFiles/Proyecto.dir/all:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/depend
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles --progress-num=1,2,3,4 "Built target Proyecto"
-.PHONY : CMakeFiles/Proyecto.dir/all
+CMakeFiles/test_lexer.dir/all:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/depend
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles --progress-num=1,2,3 "Built target test_lexer"
+.PHONY : CMakeFiles/test_lexer.dir/all
 
 # Include target in all.
-all: CMakeFiles/Proyecto.dir/all
+all: CMakeFiles/test_lexer.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Proyecto.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Proyecto.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles 0
-.PHONY : CMakeFiles/Proyecto.dir/rule
+CMakeFiles/test_lexer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_lexer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_lexer.dir/rule
 
 # Convenience name for target.
-Proyecto: CMakeFiles/Proyecto.dir/rule
+test_lexer: CMakeFiles/test_lexer.dir/rule
 
-.PHONY : Proyecto
-
-# clean rule for target.
-CMakeFiles/Proyecto.dir/clean:
-	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/clean
-.PHONY : CMakeFiles/Proyecto.dir/clean
+.PHONY : test_lexer
 
 # clean rule for target.
-clean: CMakeFiles/Proyecto.dir/clean
+CMakeFiles/test_lexer.dir/clean:
+	$(MAKE) -f CMakeFiles/test_lexer.dir/build.make CMakeFiles/test_lexer.dir/clean
+.PHONY : CMakeFiles/test_lexer.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/test_lexer.dir/clean
 
 .PHONY : clean
 

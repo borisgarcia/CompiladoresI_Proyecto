@@ -1,0 +1,9 @@
+if(x == true && y != false){
+	// If Statements
+}
+else if(!z || !xy){
+	/* Else if Statements */
+}
+else{
+	/* Else Statements */
+}
