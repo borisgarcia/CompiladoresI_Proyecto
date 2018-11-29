@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-project (test_lexer)
+project (test_parser)
 
 set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++14" )
 
@@ -8,7 +8,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/../)
   
 add_executable(${PROJECT_NAME} 
-                    ${PROJECT_SOURCE_DIR}/../Parser.cpp
+                    ${PROJECT_SOURCE_DIR}/../Parser.cpp ../Lexer.cpp
                     test_parser.cpp)
 
 enable_testing()

@@ -1,6 +1,10 @@
-while(x > 9 && y < 0){
-}
-while( 	z	>= 150 || l <= j){
-	//Do Something;;
-	int i1[10];
+int main()
+{
+	while(x > 9 && y < 0)
+	{
+	}
+	while( 	z	>= 150 || l <= j){
+		//Do Something;;
+		int i1[10];
+	}
 }

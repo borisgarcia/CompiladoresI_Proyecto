@@ -109,7 +109,7 @@ Token Lexer::getNextToken()
         {
             std::string s = getSequence([](char ch){ return ch == '_' || isalpha(ch) || isdigit(ch);});
             tk = s;
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             if(s.empty())
             {
                 std::cout << "Unknown" << " ";
@@ -178,7 +178,7 @@ Token Lexer::getNextToken()
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::MULTI_OP;
         }
         else if(currCh == '+')
@@ -189,10 +189,10 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::INCREMENT_OP;
             }
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::ADD_OP;
         }
         else if(currCh == '-')
@@ -203,10 +203,10 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::DECREMENT_OP;
             }
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::SUB_OP;
         }
         else if(currCh == '=')
@@ -217,10 +217,10 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::EQUAL_OP;
             }
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::ASSIGN_OP;
         }
         else if(currCh == '&')
@@ -231,7 +231,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::AND_OP;
             }
             return Token::Unknown;
@@ -244,7 +244,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::OR_OP;
             }
             return Token::Unknown;
@@ -257,7 +257,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::GREATER_EQUAL_OP;
             }
             return Token::GREATER_OP;
@@ -270,7 +270,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::LESS_EQUAL_OP;
             }
             return Token::LESS_OP;
@@ -283,7 +283,7 @@ Token Lexer::getNextToken()
             {
                 tk += char(currCh);
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::NOT_EQUAL_OP;
             }
             return Token::NOT;
@@ -292,63 +292,63 @@ Token Lexer::getNextToken()
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::SEMICOLON;
         }
         else if(currCh == ',')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::COMMA;
         }
         else if(currCh == '(')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::OPENPAR;
         }
         else if(currCh == ')')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::CLOSEPAR;
         }
         else if(currCh == '{')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::OPENBRACE;
         }
         else if(currCh == '}')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::CLOSEBRACE;
         }
         else if(currCh == '[')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::OPENBRACKET;
         }
         else if(currCh == ']')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::CLOSEBRACKET;
         }
         else if(currCh == '%')
         {
             tk += char(currCh);
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::MOD_OP;
         }
         else if(currCh == '\"')
@@ -360,7 +360,7 @@ Token Lexer::getNextToken()
                 currCh = getNextChar();
             }
             currCh = getNextChar();
-            std::cout << tk << " ";
+            //std::cout << tk << " ";
             return Token::CADENA;
         }
         else if(currCh == '\'')
@@ -371,7 +371,7 @@ Token Lexer::getNextToken()
             if(currCh == '\'')
             {
                 currCh = getNextChar();
-                std::cout << tk << " ";
+                //std::cout << tk << " ";
                 return Token::LETRA;
             }
             else

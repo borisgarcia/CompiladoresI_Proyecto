@@ -1,0 +1,4 @@
+/home/boris/Escritorio/CompiladoresI/Proyecto/test_parser/build/CMakeFiles/test.dir
+/home/boris/Escritorio/CompiladoresI/Proyecto/test_parser/build/CMakeFiles/edit_cache.dir
+/home/boris/Escritorio/CompiladoresI/Proyecto/test_parser/build/CMakeFiles/rebuild_cache.dir
+/home/boris/Escritorio/CompiladoresI/Proyecto/test_parser/build/CMakeFiles/test_parser.dir

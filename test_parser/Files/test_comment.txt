@@ -8,6 +8,6 @@ Ending // Block // * / *
 
 // Line Comment /// */*/*//* Line
 
-x // hola
+int x = // hola
 
-y /* Comment Block */ + x /* Bloque 3 /* /* /* /* /* /* /* /* */
+y /* Comment Block */ + z ; /* Bloque 3 /* /* /* /* /* /* /* /* */

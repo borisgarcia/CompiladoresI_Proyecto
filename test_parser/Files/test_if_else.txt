@@ -1,9 +1,13 @@
-if(x == true && y != false){
+int main()
+{
+	if(x == true && y != false){
 	// If Statements
-}
-else if(!z || !xy){
-	/* Else if Statements */
-}
-else{
-	/* Else Statements */
+	}
+	else if(!z || !xy){
+		/* Else if Statements */
+	}
+	else{
+		/* Else Statements */
+	}
+	return 0;
 }

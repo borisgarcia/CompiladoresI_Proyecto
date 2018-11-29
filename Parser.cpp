@@ -9,7 +9,7 @@ void Parser::initParser()
     {
         throw std::invalid_argument( "\nNot Eof" );
     }
-    std::cout <<'\n'<< "Final" << '\n';
+    //std::cout <<'\n'<< "Final" << '\n';
 }
 
 void Parser::input()
@@ -479,10 +479,8 @@ void Parser::_return()
 {
     if(token == Token::kw_RETURN)
     {
-        std::cout << "Return" << '\n';
         token = lexer.getNextToken();
         expr();
-        std::cout << "Return" << '\n';
         if(token != Token::SEMICOLON)
         {
             throw std::invalid_argument( "\nreturn" );
