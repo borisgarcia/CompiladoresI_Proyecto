@@ -1,4 +1,0 @@
-/home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles/test.dir
-/home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles/edit_cache.dir
-/home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles/rebuild_cache.dir
-/home/boris/Escritorio/CompiladoresI/Proyecto/test_lexer/build/CMakeFiles/test_lexer.dir
