@@ -2,7 +2,14 @@
 
 void Parser::initParser()
 {
+    token = lexer.getNextToken();
     input();
+    token = lexer.getNextToken();
+    if(token != Token::Eof)
+    {
+        throw std::invalid_argument( "\nNot Eof" );
+    }
+    std::cout <<'\n'<< "Final" << '\n';
 }
 
 void Parser::input()
@@ -17,7 +24,7 @@ void Parser::stmt_list()
         declar();
         stmt_list();
     }
-    else if(token == Token::kw_FOR)
+    /*else if(token == Token::kw_FOR)
     {
         forstmt();
         stmt_list();
@@ -25,6 +32,11 @@ void Parser::stmt_list()
     else if(token == Token::kw_WHILE)
     {
         whilestmt();
+        stmt_list();
+    }
+    else if(token == Token::kw_IF)
+    {
+        ifstmt();
         stmt_list();
     }
     else if(token == Token::kw_PRINTF)
@@ -38,18 +50,56 @@ void Parser::stmt_list()
     else if(token == Token::IDENT)
     {
         token = lexer.getNextToken();
-        if(token == Token::ASSIGN_OP)
+        p_stmt_list();
+        stmt_list();
+    }*/
+}
+
+void Parser::p_stmt_list()
+{
+    if(token == Token::ASSIGN_OP)
+    {
+        token = lexer.getNextToken();
+        expr();
+        p_stmt_list_2();
+        if(token != Token::SEMICOLON)
         {
-            expr();
+            throw std::invalid_argument( "\np_stmt_list if" );
+        }
+        token = lexer.getNextToken();
+    }
+    else if(token == Token::OPENPAR)
+    {
+        token = lexer.getNextToken();
+        if(token == Token::CLOSEPAR)
+        {
             token = lexer.getNextToken();
-            if(token == Token::SEMICOLON)
+            if(token != Token::SEMICOLON)
             {
-                token = lexer.getNextToken();
-                stmt_list();
+                throw std::invalid_argument( "\np_stmt_list else if" );
             }
+            token = lexer.getNextToken();
         }
     }
 }
+
+void Parser::p_stmt_list_2()
+{
+    if(token == Token::OPENPAR)
+    {
+        token = lexer.getNextToken();
+        if(token == Token::CLOSEPAR)
+        {
+            token = lexer.getNextToken();
+            if(token != Token::SEMICOLON)
+            {
+                throw std::invalid_argument( "\np_stmt_list_2" );
+            }
+            token = lexer.getNextToken();
+        }
+    }
+}
+
 void Parser::declar()
 {
     if(token == Token::kw_INT || token == Token::kw_CHAR || token == Token::kw_BOOLEAN)
@@ -61,6 +111,12 @@ void Parser::declar()
             token = lexer.getNextToken();
             array();
             p_declar();
+            if(token != Token::SEMICOLON)
+            {
+                std::cout << "Semicolon" << '\n';
+                throw std::invalid_argument( "\ndeclar" );
+            }
+            token = lexer.getNextToken();
         }
     }
     else if (token == Token::kw_VOID)
@@ -91,7 +147,7 @@ void Parser::array()
         size();
         if (token != Token::CLOSEBRACKET)
         {
-            /*Error*/
+           throw std::invalid_argument( "\narray" );
         }
         token = lexer.getNextToken();
     }
@@ -111,7 +167,7 @@ void Parser::p_declar()
     {
         declarfn();
     }
-    else if(token == Token::COMMA)
+    else if(token == Token::COMMA || token == Token::ASSIGN_OP)
     {
         declarvar();
     }
@@ -125,12 +181,9 @@ void Parser::declarvar()
         if(token == Token::IDENT)
         {
             token = lexer.getNextToken();
+            array();
             declarvar();
         }
-    }
-    else if(token == Token::SEMICOLON)
-    {
-        token = lexer.getNextToken();
     }
     else if(token == Token::ASSIGN_OP)
     {
@@ -143,19 +196,20 @@ void Parser::declarvar()
 
 void Parser::value()
 {
-    if(token == Token::ASSIGN_OP)
-    {
-        expr();
-    }
-    else if(token == Token::OPENBRACE)
+    if(token == Token::OPENBRACE)
     {
         token = lexer.getNextToken();
         p_value();
         if(token != Token::CLOSEBRACE)
         {
-            /*ERROR*/
+           throw std::invalid_argument( "\nvalue" );
         }
         token = lexer.getNextToken();
+    }
+    else
+    {
+        std::cout << "Else expr" << '\n';
+        expr();
     }
 }
 
@@ -194,9 +248,10 @@ void Parser::p_declarfn()
     {
         token = lexer.getNextToken();
         p_statement();
+        _return();
         if(token != Token::CLOSEBRACE)
         {
-            /*Error*/
+           throw std::invalid_argument( "\np_declarfn" );
         }
         token = lexer.getNextToken();
     }
@@ -234,7 +289,7 @@ void Parser::whilestmt()
             condicion();
             if(token != Token::CLOSEPAR)
             {
-                /*Error*/
+               throw std::invalid_argument( "\nwhilestmt" );
             }
             token = lexer.getNextToken();
             statement();
@@ -260,7 +315,7 @@ void Parser::forstmt()
                     forassign();
                     if(token != Token::CLOSEPAR)
                     {
-                        /*Error*/
+                       throw std::invalid_argument( "\nforstmt" );
                     }
                     token = lexer.getNextToken();
                     statement();
@@ -331,12 +386,9 @@ void Parser::elsestmt()
     if(token == Token::kw_ELSE)
     {
         token = lexer.getNextToken();
-        p_elsestmt();
+        statement();
     }
-}
-void Parser::p_elsestmt()
-{
-    if(token == Token::kw_IF)
+    if(token == Token::kw_ELSEIF)
     {
         token = lexer.getNextToken();
         if(token == Token::OPENPAR)
@@ -351,20 +403,20 @@ void Parser::p_elsestmt()
             }
         }
     }
-    else if(token == Token::OPENBRACE || token == Token::kw_PRINTF || token == Token::IDENT || token == Token::kw_SCANF)
-    {
-        statement();
-    }
 }
+
 void Parser::statement()
 {
-    token = lexer.getNextToken();
+    if(token == Token::OPENBRACE)
+    {
+        token = lexer.getNextToken();
         p_statement();
         if(token != Token::CLOSEBRACE)
         {
-            /*GEN ERROR*/
+            throw std::invalid_argument( "\nstatement" );
         }
         token = lexer.getNextToken();
+    }
 }
 void Parser::p_statement()
 {
@@ -378,6 +430,11 @@ void Parser::p_statement()
         whilestmt();
         p_statement();
     }
+    else if(token == Token::kw_IF)
+    {
+        ifstmt();
+        p_statement();
+    }
     else if(token == Token::kw_PRINTF)
     {
         token = lexer.getNextToken();   
@@ -389,18 +446,36 @@ void Parser::p_statement()
     else if(token == Token::IDENT)
     {
         token = lexer.getNextToken();
-        if(token == Token::ASSIGN_OP)
+        p_stmt_list();
+        p_statement();
+    }
+    else if(token == Token::kw_INT || token == Token::kw_CHAR || token == Token::kw_BOOLEAN)
+    {
+        type();
+        pointer();
+        if(token == Token::IDENT)
         {
-            expr();
             token = lexer.getNextToken();
-            if(token == Token::SEMICOLON)
-            {
-                token = lexer.getNextToken();
-                p_statement();
-            }
+            array();
+            declarvar();
         }
     }
 }
+
+void Parser::_return()
+{
+    if(token == Token::kw_RETURN)
+    {
+        token = lexer.getNextToken();
+        expr();
+        if(token != Token::SEMICOLON)
+        {
+            throw std::invalid_argument( "\nreturn" );
+        }
+        token = lexer.getNextToken();
+    }
+}
+
 void Parser::assignOP()
 {
     if(token == Token::ASSIGN_OP)
@@ -486,7 +561,7 @@ void Parser::factor()
         expr();
         if(token != Token::CLOSEPAR)
         {
-            /*Error*/
+           throw std::invalid_argument( "\nfactor" );
         }
         token = lexer.getNextToken();
     }

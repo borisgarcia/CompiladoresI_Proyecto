@@ -5,11 +5,16 @@ stmt_list -> forstmt stmt_list
 stmt_list -> whilestmt stmt_list
 stmt_list -> ifstmt stmt_list
 stmt_list -> PRINTF ( ) ; stmt_list
-stmt_list -> IDENT = expr ; stmt_list
+stmt_list -> IDENT p_stmt_list stmt_list
 stmt_list -> SCANF ( ) ; stmt_list
 stmt_list -> ''
 
-declar -> type pointer IDENT array p_declar
+p_stmt_list -> = expr p_stmt_list_2 ;
+p_stmt_list -> ( ) ;
+p_stmt_list_2 -> ''
+p_stmt_list_2 -> ( ) ;
+
+declar -> type pointer IDENT array p_declar ;
 declar -> VOID IDENT declarfn
 
 pointer -> *
@@ -24,9 +29,10 @@ size -> ''
 p_declar -> declarfn
 p_declar -> declarvar
 
-declarvar -> , pointer IDENT declarvar
-declarvar -> ;
+declarvar -> , pointer IDENT array declarvar
 declarvar -> = value declarvar
+declarvar -> ''
+
 value -> = expr
 value -> { p_value }
 
@@ -36,14 +42,12 @@ p_value_2 -> ''
 declarfn -> ( parametros ) p_declarfn
 
 p_declarfn -> ;
-p_declarfn -> { p_statement }
+p_declarfn -> { p_statement return }
 
-declarfn -> ( parametros ) p_declarfn
-
-p_declarfn -> ;
-p_declarfn -> { p_statement }
+return -> RETURN expr ;
 
 parametros -> type IDENT p_parametros
+parametros -> ''
 p_parametros -> , parametros
 p_parametros -> ''
 
@@ -56,21 +60,21 @@ fordeclar -> ''
 forassign -> op IDENT op assignOP
 
 ifstmt -> IF ( condicion ) statement elsestmt
-elsestmt -> ELSE p_elsestmt
+elsestmt -> ELSE statement
+elsestmt -> ELSEIF ( condicion ) statement elsestmt
 elsestmt -> ''
-p_elsestmt -> IF ( condicion ) statement elsestmt
+
+p_elsestmt -> ELSEIF ( condicion ) statement elsestmt
 p_elsestmt -> statement
 
 statement -> { p_statement }
-statement -> printf ( ) ;
-statement -> IDENT = expr ;
-statement -> scanf ;
 
 p_statement -> forstmt p_statement
+p_statement -> type pointer IDENT array declarvar
 p_statement -> whilestmt p_statement
 p_statement -> ifstmt p_statement
 p_statement -> printf ( ) ; p_statement
-p_statement -> IDENT = expr ; p_statement
+p_statement -> IDENT p_stmt_list p_statement
 p_statement -> scanf ; p_statement
 p_statement -> ''
 
@@ -115,4 +119,3 @@ factor -> FALSE
 factor -> CADENA
 factor -> LETRA
 factor -> ( expr )
-

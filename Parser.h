@@ -12,6 +12,8 @@ class Parser
         Lexer &lexer;
         void input();
         void stmt_list();
+        void p_stmt_list();
+        void p_stmt_list_2();
         void declar();
         void pointer();
         void array();
@@ -45,6 +47,7 @@ class Parser
         void factor();
         void parametros();
         void p_parametros();
+        void _return();
 
 };
 

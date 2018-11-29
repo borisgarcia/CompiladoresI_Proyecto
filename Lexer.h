@@ -56,9 +56,7 @@ enum class Token : int
     DIV_OP              = 44,
     MULTI_OP            = 45,
     MOD_OP              = 46,
-
-    CADENA              = 47,
-    LETRA               = 48,
+    LETRA               = 47,
 
     //No Term
 

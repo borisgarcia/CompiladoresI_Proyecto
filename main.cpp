@@ -1,4 +1,4 @@
-#include "Sintax.h"
+#include "Parser.h"
 
 int main( int argc, char * argv [] )
 {
@@ -10,7 +10,7 @@ int main( int argc, char * argv [] )
 
     Lexer lexer(argv[1]);
 
-    Sintax parser(lexer);
+    Parser parser(lexer);
 
     try
     {

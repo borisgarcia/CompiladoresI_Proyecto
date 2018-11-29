@@ -4,7 +4,11 @@
 CMakeFiles/Proyecto.dir/Lexer.cpp.o: ../Lexer.cpp
 CMakeFiles/Proyecto.dir/Lexer.cpp.o: ../Lexer.h
 
+CMakeFiles/Proyecto.dir/Parser.cpp.o: ../Lexer.h
 CMakeFiles/Proyecto.dir/Parser.cpp.o: ../Parser.cpp
+CMakeFiles/Proyecto.dir/Parser.cpp.o: ../Parser.h
 
+CMakeFiles/Proyecto.dir/main.cpp.o: ../Lexer.h
+CMakeFiles/Proyecto.dir/main.cpp.o: ../Parser.h
 CMakeFiles/Proyecto.dir/main.cpp.o: ../main.cpp
 

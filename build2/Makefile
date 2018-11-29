@@ -48,24 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/tests
+CMAKE_SOURCE_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/build
+CMAKE_BINARY_DIR = /home/boris/Escritorio/CompiladoresI/Proyecto/build2
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -91,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles /home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/boris/Escritorio/CompiladoresI/Proyecto/build2/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,71 +111,98 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_parser
+# Target rules for targets named Proyecto
 
 # Build rule for target.
-test_parser: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_parser
-.PHONY : test_parser
+Proyecto: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Proyecto
+.PHONY : Proyecto
 
 # fast build rule for target.
-test_parser/fast:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/build
-.PHONY : test_parser/fast
+Proyecto/fast:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/build
+.PHONY : Proyecto/fast
 
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.o: home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.o
+Lexer.o: Lexer.cpp.o
 
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.o
-
-# target to build an object file
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.o
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.o
-
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.i: home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.i
-
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.i
-
-# target to preprocess a source file
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.i
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.i
-
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.s: home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.s
-
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.s
-
-# target to generate assembly for a file
-home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.s
-.PHONY : home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp.s
-
-test_parser.o: test_parser.cpp.o
-
-.PHONY : test_parser.o
+.PHONY : Lexer.o
 
 # target to build an object file
-test_parser.cpp.o:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/test_parser.cpp.o
-.PHONY : test_parser.cpp.o
+Lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.o
+.PHONY : Lexer.cpp.o
 
-test_parser.i: test_parser.cpp.i
+Lexer.i: Lexer.cpp.i
 
-.PHONY : test_parser.i
+.PHONY : Lexer.i
 
 # target to preprocess a source file
-test_parser.cpp.i:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/test_parser.cpp.i
-.PHONY : test_parser.cpp.i
+Lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.i
+.PHONY : Lexer.cpp.i
 
-test_parser.s: test_parser.cpp.s
+Lexer.s: Lexer.cpp.s
 
-.PHONY : test_parser.s
+.PHONY : Lexer.s
 
 # target to generate assembly for a file
-test_parser.cpp.s:
-	$(MAKE) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/test_parser.cpp.s
-.PHONY : test_parser.cpp.s
+Lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Lexer.cpp.s
+.PHONY : Lexer.cpp.s
+
+Parser.o: Parser.cpp.o
+
+.PHONY : Parser.o
+
+# target to build an object file
+Parser.cpp.o:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.o
+.PHONY : Parser.cpp.o
+
+Parser.i: Parser.cpp.i
+
+.PHONY : Parser.i
+
+# target to preprocess a source file
+Parser.cpp.i:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.i
+.PHONY : Parser.cpp.i
+
+Parser.s: Parser.cpp.s
+
+.PHONY : Parser.s
+
+# target to generate assembly for a file
+Parser.cpp.s:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/Parser.cpp.s
+.PHONY : Parser.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/Proyecto.dir/build.make CMakeFiles/Proyecto.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -194,16 +210,18 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_parser"
-	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Parser.o"
-	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Parser.i"
-	@echo "... home/boris/Escritorio/CompiladoresI/Proyecto/Parser.s"
-	@echo "... test_parser.o"
-	@echo "... test_parser.i"
-	@echo "... test_parser.s"
+	@echo "... Proyecto"
+	@echo "... Lexer.o"
+	@echo "... Lexer.i"
+	@echo "... Lexer.s"
+	@echo "... Parser.o"
+	@echo "... Parser.i"
+	@echo "... Parser.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

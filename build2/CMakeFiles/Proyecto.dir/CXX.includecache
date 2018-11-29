@@ -25,8 +25,14 @@ deque
 -
 
 /home/boris/Escritorio/CompiladoresI/Proyecto/Parser.cpp
+Parser.h
+/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.h
+
+/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.h
+Lexer.h
+/home/boris/Escritorio/CompiladoresI/Proyecto/Lexer.h
 
 /home/boris/Escritorio/CompiladoresI/Proyecto/main.cpp
-Sintax.h
-/home/boris/Escritorio/CompiladoresI/Proyecto/Sintax.h
+Parser.h
+/home/boris/Escritorio/CompiladoresI/Proyecto/Parser.h
 
