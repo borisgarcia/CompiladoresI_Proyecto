@@ -1,1 +1,3 @@
-/home/boris/Escritorio/CompiladoresI/Proyecto/build/ 
+build/ 
+test_parser/build/
+test_lexer/build/
